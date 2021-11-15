@@ -2,7 +2,7 @@
 	"name": "git-log-header",
 	"displayName": "GitLogHeader",
 	"description": "Fastly and light weight vscode extend for show the file's git info over top",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.39.0"
 	},
@@ -14,6 +14,7 @@
 	"repository": {
 		"url": "https://github.com/Hansuku/GitLogHeader"
 	},
+	"icon": "images/icon.png",
 	"activationEvents": [
 		"onStartupFinished"
 	],
