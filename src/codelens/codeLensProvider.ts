@@ -8,12 +8,12 @@ export class GitCodeLensProvider implements vscode.CodeLensProvider {
     return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
   }
   public async provideCodeLenses(document: vscode.TextDocument, token: vscode.CancellationToken) : Promise<vscode.CodeLens[]> {
-    const gitPath = vscode.workspace.workspaceFolders?.find(n =>  document.fileName.includes(n.uri.path));
+    const gitPath = vscode.workspace.workspaceFolders?.find(n =>  document.uri.fsPath.includes(n.uri.fsPath));
     const codeLenses = [];
     try {
-      const git: SimpleGit = simpleGit(gitPath?.uri.path, { binary: 'git' });
+      const git: SimpleGit = simpleGit(gitPath?.uri.fsPath, { binary: 'git' });
       const logData: LogResult = await git.log({
-        file: document.fileName
+        file: document.uri.fsPath
       });
       const startAt = new Date(logData.all[logData.all.length - 1].date);
       const first = {
